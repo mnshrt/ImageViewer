@@ -1,7 +1,9 @@
 .header{
     text-align: left;
-    padding: 20px;
-    background: #000000;
+    /* padding: 20px; */
+    background: #263238;
     color: #ffffff;
+    font-size: 18px;
+    vertical-align: middle;
     
 }
