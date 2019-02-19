@@ -24,7 +24,9 @@ class Login extends Component {
             loginIsClicked: false,
             value: 0,
             usernameRequired: "dispNone",
-            username: ""
+            passwordRequired: "dispIncoorect",
+            username: "correct",
+            password: "correct"
         };
     }
     loginButtonHandler = () => {
@@ -33,11 +35,15 @@ class Login extends Component {
     }
     loginClickHandler = () => {
         // this.state.username === "" ? this.setState({ usernameRequired: "dispBlock" }) : this.setState({ usernameRequired: "dispNone" });
-        this.state.username !== "komal" ? this.setState({ usernameRequired: "dispBlock" }) : this.setState({ usernameRequired: "dispNone" });
+        this.state.username === "correct" ? this.setState({ usernameRequired: "dispBlock" }) : this.setState({ usernameRequired: "dispNone" });
+        this.state.password === "correct" ? this.setState({ usernameRequired: "dispBlock" }) : this.setState({ passwordRequired: "dispIncoorect" });
     }
 
     inputUsernameChangeHandler = (e) => {
         this.setState({ username: e.target.value });
+    }
+    inputPasswordChangeHandler = (e) => {
+        this.setState({ password: e.target.value });
     }
     render() {
         return (
@@ -58,7 +64,10 @@ class Login extends Component {
                         </FormControl><br /><br />
                         <FormControl required>
                             <InputLabel htmlFor="password">Password</InputLabel>
-                            <Input id="password" type="password"></Input>
+                            <Input id="password" type="text" password={this.state.password} onChange={this.inputPasswordChangeHandler} />
+                            <FormHelperText className={this.state.passwordRequired}>
+                                <span className="red">required</span>
+                            </FormHelperText>
                         </FormControl><br /><br />
 
 
