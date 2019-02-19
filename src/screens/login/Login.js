@@ -7,11 +7,12 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Header from "./Header";
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 const CardContainer = function (props) {
     return (
-        <Typography component="div" style={{ padding: 0, textAlign:'center' }}>
-        {props.children}
+        <Typography component="div" style={{ padding: 0, textAlign: 'center' }}>
+            {props.children}
         </Typography>
     );
 }
@@ -21,43 +22,51 @@ class Login extends Component {
         super();
         this.state = {
             loginIsClicked: false,
-            value: 0
+            value: 0,
+            usernameRequired: "dispNone",
+            username: ""
         };
     }
     loginButtonHandler = () => {
         this.setState({ loginIsClicked: true })
 
     }
-    render(){
-        return(
+    loginClickHandler = () => {
+        // this.state.username === "" ? this.setState({ usernameRequired: "dispBlock" }) : this.setState({ usernameRequired: "dispNone" });
+        this.state.username !== "komal" ? this.setState({ usernameRequired: "dispBlock" }) : this.setState({ usernameRequired: "dispNone" });
+    }
+
+    inputUsernameChangeHandler = (e) => {
+        this.setState({ username: e.target.value });
+    }
+    render() {
+        return (
             <div>
                 <div>
-                 <Header></Header>
-            </div>
+                    <Header></Header>
+                </div>
                 <CardContainer>
                     <CardContent>
-                    <Typography variant="h5" component="h2">LOGIN</Typography>
-                   
+                        <Typography variant="h5" component="h2">LOGIN</Typography>
+
                         <FormControl required>
                             <InputLabel htmlFor="username">Username</InputLabel>
-                            <Input id="username" type ="text"></Input>
-                        </FormControl><br/><br/>
+                            <Input id="username" type="text" username={this.state.username} onChange={this.inputUsernameChangeHandler} />
+                            <FormHelperText className={this.state.usernameRequired}>
+                                <span className="red">required</span>
+                            </FormHelperText>
+                        </FormControl><br /><br />
                         <FormControl required>
                             <InputLabel htmlFor="password">Password</InputLabel>
-                            <Input id="password" type ="password"></Input>
-                        </FormControl><br/><br/>
-                        
-                    
-                <div className="login-button">
-                        <Button variant="contained" colour="primary"
-                            onClick={this.loginButtonHandler}>
-                            Login
-                        </Button>
-                </div>
-                </CardContent>
+                            <Input id="password" type="password"></Input>
+                        </FormControl><br /><br />
+
+
+                        <Button variant="contained" color="primary" onClick={this.loginClickHandler}>LOGIN</Button>
+                    </CardContent>
                 </CardContainer>
             </div>
         );
     }
 
-export default Login;
+    export default Login ;
