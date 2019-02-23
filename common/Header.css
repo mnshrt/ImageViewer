@@ -1,0 +1,15 @@
+.navbar {
+  background-color: rgb(38, 50, 56) !important;
+}
+
+.search-bar-container {
+  position: "relative";
+  display: inline-flex;
+  margin-left: 800px;
+  width: "100%";
+  background: grey;
+}
+
+.search-icon {
+  color: black;
+}
