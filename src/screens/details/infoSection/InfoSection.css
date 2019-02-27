@@ -1,0 +1,47 @@
+.details{
+    margin-top:24px;
+    margin-bottom:24px;
+}
+.leftDetails{
+    padding-left:150px;
+    margin-bottom: 16px;
+    padding-top:42px;
+}
+.rightDetails{
+    margin-left:150px;
+    padding-top: 24px;
+    margin-bottom: 16px;
+}
+.profileImage{
+    height:50px;
+    width:50px;
+    border-radius: 25px;
+}
+.flex-containerDetails{
+    display: flex;
+}
+.flex-countsContainer{
+    display:flex;
+}
+.flex-editNameContainer{
+    display:flex;
+}
+.editButtonContainer{
+    margin-left:24px;
+}
+.fullNameContainer{
+    padding-top:20px;
+}
+.editLabelHead{
+    font-family: roboto;
+    
+}
+.dispNone{
+    display:none;
+}
+.dispBlock{
+    display: block;
+}
+.red{
+    color:red;
+}
