@@ -13,7 +13,8 @@ import Input from '@material-ui/core/Input';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import PropTypes from 'prop-types';
 
-const ACCESS_TOKEN = "8661035776.d0fcd39.87fd934e04f84253aaf234d8bd4e4c65";
+//add the access token below
+const ACCESS_TOKEN = "";
 const customStyles = {
     content: {
         top: '50%',
