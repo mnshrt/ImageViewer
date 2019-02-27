@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import InfoSection from './infoSection/InfoSection'
-class Details extends Component{
+import ImageGridListSection from './imageGridListSection/ImageGridListSection';
+class Profile extends Component{
 
     render(){
         return( 
         <div>
                {/*<Header/> */} 
                <InfoSection/>
+               <ImageGridListSection/>
 
 
         </div>);
@@ -16,4 +18,4 @@ class Details extends Component{
     
     
 }
-export default Details;
+export default Profile;
