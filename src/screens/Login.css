@@ -1,0 +1,23 @@
+.dispNone {
+  display: none;
+}
+
+.dispBlock {
+  display: block;
+}
+
+.red {
+  color: red;
+}
+
+.login-card {
+  width: 80%;
+  text-align: center;
+}
+
+.top-container {
+  width: 60%;
+  text-align: center;
+  margin-left: 50vh;
+  margin-top: 10px;
+}
