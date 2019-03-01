@@ -2,6 +2,8 @@ import React,{Component} from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
+import PostDetailsSection from '../postDetailsSection/PostDetailsSection'
+import Modal from 'react-modal';
 
 //add the access token below
 const ACCESS_TOKEN = "";
@@ -25,7 +27,9 @@ class ImageGridListSection extends Component{
      constructor(props){
          super(props);
          this.state={
-         imagePostsData:[]
+          imagePostsData:[],
+          detailsModalIsOpen:false,
+          currentPost:{}
         }
     }
 
@@ -43,6 +47,13 @@ class ImageGridListSection extends Component{
             console.log(mediaData.data[0].images.standard_resolution.url);
         }
     }
+    openDetailsModalHandler=(post)=>{
+      this.setState({detailsModalIsOpen:true,currentPost:post});
+      console.log(post)
+    }
+    closeDetailsModalHandler=()=>{
+      this.setState({detailsModalIsOpen:false});
+    }
     
    render(){ 
     let {classes}= this.props;
@@ -51,12 +62,18 @@ class ImageGridListSection extends Component{
         <div className={classes.root}>
         <GridList cellHeight={400} className={classes.gridList} cols={3}>
           {imagePostsData.map(post => (
-            <GridListTile key={"grid"+post.id}>
+            <GridListTile key={"grid"+post.id} onClick={() => this.openDetailsModalHandler(post)}>
               <img src={post.images.standard_resolution.url} alt={post.caption.text} />
             </GridListTile>
           ))}
         </GridList>
-
+        <Modal ariaHideApp={false} isOpen={this.state.detailsModalIsOpen} 
+                onRequestClose={this.closeDetailsModalHandler}  >
+               
+                  <PostDetailsSection currentPostData={this.state.currentPost}/>
+                
+                
+        </Modal>
       </div>
 
     );
