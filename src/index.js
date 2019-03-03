@@ -1,10 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+// Imports
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import "./index.css";
 
-ReactDOM.render(
-    <span>
-        Image Viewer
-    </span>, 
-    document.getElementById('root')
-);
+// Main render
+ReactDOM.render(<App />, document.getElementById("root"));
