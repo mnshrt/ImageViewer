@@ -70,18 +70,21 @@ class Login extends Component {
   loginClickHandler = () => {
     let username= this.state.username;
     let password= this.state.password;
+
+    this.state.inputUsername===""? this.setState({usernameRequired:"dispBlock",authFailed : "dispNone"}):this.setState({usernameRequired:"dispNone"})
+    this.state.inputPassword===""? this.setState({passwordRequired: "dispBlock",authFailed : "dispNone"}):  this.setState({passwordRequired: "dispNone"}) 
+    
     if(this.state.inputUsername!=="" && this.state.inputPassword!==""){
       //checking with the saved password
       if (this.state.inputUsername===username && this.state.inputPassword===password) {
+        this.setState({usernameRequired:"dispNone",passwordRequired: "dispNone", authFailed : "dispNone"})
         alert("authenticated");
         //this.setRedirect();
       }else{
       this.setState({authFailed : "dispBlock"})
       }  
     }
-    this.state.inputUsername===""? this.setState({usernameRequired:"dispBlock"}):this.setState({usernameRequired:"dispNone"})
-    this.state.inputPassword===""? this.setState({passwordRequired: "dispBlock"}):  this.setState({passwordRequired: "dispNone"}) 
-    
+   
     }
   
 
