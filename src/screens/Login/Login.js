@@ -1,16 +1,3 @@
-import React, { Component } from "react";
-import Typography from "@material-ui/core/Typography";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Input from "@material-ui/core/Input";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
-import PropTypes from 'prop-types';
-import FormHelperText from "@material-ui/core/FormHelperText";
-import { Redirect } from "react-router-dom";
-import "./Login.css";
-
 // Card container
 const CardContainer = function(props) {
   return (
@@ -20,10 +7,9 @@ const CardContainer = function(props) {
   );
 };
 
-
 CardContainer.propTypes = {
   children: PropTypes.node.isRequired
-}
+};
 
 /**
  *
@@ -43,12 +29,10 @@ class Login extends Component {
       authFailed: "dispNone",
       username: "correct",
       password: "correct",
-      inputUsername:"",
-      inputPassword:"",
+      inputUsername: "",
+      inputPassword: "",
       redirect: false
     };
- 
-   
   }
 
   setRedirect = () => {
@@ -63,33 +47,45 @@ class Login extends Component {
     }
   };
 
- /* loginButtonHandler = () => {
+  /* loginButtonHandler = () => {
     this.setState({ loginIsClicked: true });
   };*/
 
   loginClickHandler = () => {
-    let username= this.state.username;
-    let password= this.state.password;
+    let username = this.state.username;
+    let password = this.state.password;
 
-    this.state.inputUsername===""? this.setState({usernameRequired:"dispBlock",authFailed : "dispNone"}):this.setState({usernameRequired:"dispNone"})
-    this.state.inputPassword===""? this.setState({passwordRequired: "dispBlock",authFailed : "dispNone"}):  this.setState({passwordRequired: "dispNone"}) 
-    
-    if(this.state.inputUsername!=="" && this.state.inputPassword!==""){
+    this.state.inputUsername === ""
+      ? this.setState({ usernameRequired: "dispBlock", authFailed: "dispNone" })
+      : this.setState({ usernameRequired: "dispNone" });
+    this.state.inputPassword === ""
+      ? this.setState({ passwordRequired: "dispBlock", authFailed: "dispNone" })
+      : this.setState({ passwordRequired: "dispNone" });
+
+    if (this.state.inputUsername !== "" && this.state.inputPassword !== "") {
       //checking with the saved password
-      if (this.state.inputUsername===username && this.state.inputPassword===password) {
-        this.setState({usernameRequired:"dispNone",passwordRequired: "dispNone", authFailed : "dispNone"})
+      if (
+        this.state.inputUsername === username &&
+        this.state.inputPassword === password
+      ) {
+        this.setState({
+          usernameRequired: "dispNone",
+          passwordRequired: "dispNone",
+          authFailed: "dispNone"
+        });
         //setting access token variable in session Storage
-        sessionStorage.setItem("access-token","8661035776.d0fcd39.87fd934e04f84253aaf234d8bd4e4c65");
+        sessionStorage.setItem(
+          "access-token",
+          "8661035776.d0fcd39.87fd934e04f84253aaf234d8bd4e4c65"
+        );
 
         //add the routing for the home page here
-        alert("authenticated");
-      }else{
-      this.setState({authFailed : "dispBlock"})
-      }  
+        this.setRedirect();
+      } else {
+        this.setState({ authFailed: "dispBlock" });
+      }
     }
-   
-    }
-  
+  };
 
   inputUsernameChangeHandler = e => {
     this.setState({ inputUsername: e.target.value });
@@ -107,11 +103,15 @@ class Login extends Component {
           <CardContainer className="login-card-container">
             <Card className="login-card">
               <CardContent className="card-content">
-                <Typography variant="headline" component="h2" style={{marginBottom:"10px"}}>
+                <Typography
+                  variant="headline"
+                  component="h2"
+                  style={{ marginBottom: "10px" }}
+                >
                   LOGIN
                 </Typography>
 
-                <FormControl className='login-input-field' required >
+                <FormControl className="login-input-field" required>
                   <InputLabel htmlFor="username">Username</InputLabel>
                   <Input
                     id="username"
@@ -125,7 +125,7 @@ class Login extends Component {
                 </FormControl>
                 <br />
                 <br />
-                <FormControl className='login-input-field' required>
+                <FormControl className="login-input-field" required>
                   <InputLabel htmlFor="password">Password</InputLabel>
                   <Input
                     id="password"
@@ -145,7 +145,9 @@ class Login extends Component {
                 <br />
                 <br />
 
-                <Button variant="contained" style={{backgroundColor: '#5B00BB',color:"#FFFFFF",marginTop:'10px'}}
+                <Button
+                  variant="contained"
+                  color="primary"
                   onClick={this.loginClickHandler}
                 >
                   LOGIN
@@ -161,3 +163,4 @@ class Login extends Component {
 
 // Export
 export default Login;
+
