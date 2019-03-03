@@ -1,0 +1,114 @@
+input.middle:focus {
+  outline-width: 0;
+}
+
+.Post {
+  position: inherit;
+  width: 90%;
+  height: 50%;
+  background: #fff;
+  margin-left: 5%;
+  margin-bottom: 0;
+  display: block;
+}
+
+.Post-caption {
+  font-size: smaller;
+}
+
+.card-container {
+  position: relative;
+  width: 42vw;
+  height: 100%;
+  background: #fff;
+  margin: 20px 10px 20px 65px;
+  padding-top: 0;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.post-container {
+  position: relative;
+  width: 99%;
+  height: 100%;
+  background: #fff;
+  margin: 10px 10px 10px 10px;
+  display: inline-block;
+}
+
+.Post-user {
+  display: flex;
+  padding: 16px;
+  align-items: center;
+}
+.Post-user-avatar {
+  width: 30px;
+  height: 30px;
+}
+.Post-user-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.Post-user-nickname {
+  margin-left: 12px;
+  font-weight: bold;
+}
+.Post-image-bg {
+  background-color: #efefef;
+}
+.Post-image img {
+  display: block;
+  width: 100%;
+}
+.Post-caption {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.Post-caption strong {
+  font-family: "PT Sans", sans-serif;
+  font-weight: bold;
+}
+.vjs-fade-out {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.comment-component {
+  display: inline-flex;
+  margin-bottom: 20px;
+}
+
+.comment-textfield {
+  width: 90%;
+  background-color: transparent;
+  /*border: 0;
+  border-bottom: solid 1px black;
+  padding-bottom: 4px;
+  color: black !important;
+  margin-right: 30px;
+  font-size: 15px; */
+}
+
+.comment-btn {
+  font-weight: bold;
+}
+
+.likes {
+  display: inline-flex;
+  align-items: center;
+}
+
+#likeCount {
+  margin-top: 2px;
+}
+
+#date {
+  font-weight: lighter;
+  font-size: smaller;
+}
+
+.like-icon {
+  color: red !important;
+}
