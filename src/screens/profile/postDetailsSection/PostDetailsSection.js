@@ -1,6 +1,12 @@
 import React, {Component} from 'react';
 import './PostDetailsSection.css';
 import Typography from '@material-ui/core/Typography';
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
+import Input from "@material-ui/core/Input";
+import Button from "@material-ui/core/Button";
+import Favorite from "@material-ui/icons/Favorite";
+import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 
 class PostDetailsSection extends Component{
 constructor(props){
@@ -12,10 +18,14 @@ constructor(props){
         caption:"",
         tags:[],
         comments:[],
-        likes:""
+        likes:"",
+        showFavorite: false,
+        likeBool: false,
+        decrementBool: false
 
     }
 }
+
 componentWillMount(){
     this.setState({
       standard_resolution:this.props.currentPostData.images.standard_resolution.url,
@@ -28,7 +38,44 @@ componentWillMount(){
     })
     console.log(this.state.standard_resolution);
 }
+
+   createComment=(e)=>{
+       e.preventDefault();
+     const newComment=  e.target.elements.comment.value;
+     var updatedComments= this.state.comments;
+     updatedComments.unshift(newComment);
+     this.setState({comments:updatedComments});
+     e.target.elements.comment.value='';
+   }
+
+  likePicture = () => {
+    console.log(this.state.likeCount);
+    this.setState({
+      showFavorite: true,
+      likeBool: true,
+      decrementBool: false
+    });
+  };
+
+  unlikePicture = () => {
+    this.setState({
+      showFavorite: false,
+      decrementBool: true,
+      likeBool: false
+    });
+  };
     render(){
+       let comments= this.state.comments;
+       let likes = this.state.likes;
+       let finalLikes;
+       console.log(finalLikes);
+       if (this.state.likeBool) {
+         finalLikes = likes;
+         finalLikes = finalLikes + 1;
+       }
+       if (this.state.decrementBool) {
+         finalLikes = finalLikes - 1;
+       }
         return(
             <div className="flex-postDetailsContainer">
                     <div className="left">
@@ -55,8 +102,66 @@ componentWillMount(){
                         <div>{this.state.tags.map((tag)=>(
                             <span className="hashTags">{"#"+tag+" "}</span>
                         ))}
-                        </div>    
-                    </div>
+                        </div>  
+                        {/* adding the new comments*/}  
+                        <br/>
+                        
+            
+                        <div style={{marginBottom:'100px'}}>
+                        {comments.map((comment)=>(
+                           <p><strong>{this.state.username+ ": "}</strong>{comment}</p>
+                        ))}
+                        </div>
+                        {/* adding the like and comment components*/}
+                       <br/>
+                       <div className="likes" style={{ display: "inline - flex" }}>
+                          {!this.state.showFavorite ? (
+                            <FavoriteBorder
+                              onClick={event => {
+                                this.likePicture();
+                              }}
+                            />
+                          ) : (
+                            <Favorite
+                              style={{ color: "red" }}
+                              onClick={this.unlikePicture}
+                            />
+                          )}
+                          {!this.state.likeBool || this.state.decrementBool ? (
+                            <span id="likeCount"> {likes} likes </span>
+                          ) : (
+                            <span id="likeCount"> {finalLikes} likes </span>
+                          )}
+                        </div>
+                        <br />
+                        <FormControl>
+                          <form onSubmit={this.createComment}>
+                            <div className="comment-component">
+                              <div>
+                                <InputLabel variant="standard" htmlFor="comment">
+                                  Add a comment
+                                </InputLabel>
+                                <Input
+                                  className="comment-textfield"
+                                  name="comment"                                 
+                                  placeholder="Add a comment"
+                                  style={{ marginRight: " 200px" }}
+                                />
+                              </div>
+                              <Button
+                                type="submit"
+                                variant="contained"
+                                size="small"
+                                color="primary"
+                                className="comment-btn"
+                              >
+                                <strong>Add</strong>
+                              </Button>
+                            </div>
+                          </form>
+                        </FormControl>
+    
+                        </div>
                         <br/>
                       
                 </div>

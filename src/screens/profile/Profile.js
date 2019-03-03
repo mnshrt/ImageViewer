@@ -9,6 +9,7 @@ class Profile extends Component{
                {/*<Header/> */} 
                <InfoSection/>
                <ImageGridListSection/>
+               {/*  **/}
 
 
         </div>);

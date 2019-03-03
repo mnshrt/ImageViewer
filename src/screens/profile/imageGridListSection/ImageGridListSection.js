@@ -6,7 +6,8 @@ import PostDetailsSection from '../postDetailsSection/PostDetailsSection'
 import Modal from 'react-modal';
 
 //add the access token below
-const ACCESS_TOKEN = "";
+const ACCESS_TOKEN = "8661035776.d0fcd39.87fd934e04f84253aaf234d8bd4e4c65";
+//sessionStorage.getItem("access-token");
 
 
 const styles = theme => ({

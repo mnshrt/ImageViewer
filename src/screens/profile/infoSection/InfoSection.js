@@ -14,7 +14,10 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import PropTypes from 'prop-types';
 
 //add the access token below
-const ACCESS_TOKEN = "";
+const ACCESS_TOKEN = "8661035776.d0fcd39.87fd934e04f84253aaf234d8bd4e4c65";
+
+//sessionStorage.getItem("access-token");
+console.log(ACCESS_TOKEN);
 const customStyles = {
     content: {
         top: '50%',
@@ -100,7 +103,7 @@ class InfoSection extends Component {
         this.setState({editModalIsOpen:true});
     }
     closeEditModalHandler=()=>{
-        this.setState({editModalIsOpen:false});
+        this.setState({editModalIsOpen:false,editedFullNameRequired: "dispNone"});
     }
     editedFullNameChangeHandler=(e)=>{
        this.setState({editedFullName:e.target.value});
