@@ -1,4 +1,4 @@
-/ Imports
+//Imports
 import React, { Component } from "react";
 import Typography from "@material-ui/core/Typography";
 import FormControl from "@material-ui/core/FormControl";
