@@ -9,7 +9,7 @@ class Profile extends Component {
   render() {
     return (
       <div>
-        {/** Here we need to provide the props to the header*/
+        {/** Here we need to provide the props to the header*/}
         <InfoSection />
         <ImageGridListSection />
       </div>
