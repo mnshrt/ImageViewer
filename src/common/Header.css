@@ -1,0 +1,28 @@
+.navbar {
+  background-color: rgb(38, 50, 56) !important;
+}
+
+.search-bar-container {
+  position: "relative";
+  display: inline-flex;
+  margin-left: 600px;
+  width: 300px;
+  background: #c0c0c0;
+  border-radius: 4px;
+}
+
+.search-icon {
+  color: black;
+}
+
+.menu-item-container {
+  /* background: rgb(223, 223, 223) !important; */
+  margin: 10px;
+  outline-width: 0;
+}
+
+.menu-item {
+  font-size: 15px !important;
+  margin: 0 !important;
+}
+
