@@ -6,7 +6,7 @@ import Input from "@material-ui/core/Input";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
-import Header from "../common/Header";
+import PropTypes from 'prop-types';
 import FormHelperText from "@material-ui/core/FormHelperText";
 import { Redirect } from "react-router-dom";
 import "./Login.css";
@@ -19,6 +19,11 @@ const CardContainer = function(props) {
     </Typography>
   );
 };
+
+
+CardContainer.propTypes = {
+  children: PropTypes.node.isRequired
+}
 
 /**
  *
@@ -38,12 +43,12 @@ class Login extends Component {
       authFailed: "dispNone",
       username: "correct",
       password: "correct",
+      inputUsername:"",
+      inputPassword:"",
       redirect: false
     };
-    this.loginButtonHandler = this.loginButtonHandler.bind(this);
-    this.loginClickHandler = this.loginClickHandler.bind(this);
-    this.setRedirect = this.setRedirect.bind(this);
-    this.renderRedirect = this.renderRedirect.bind(this);
+ 
+   
   }
 
   setRedirect = () => {
@@ -58,54 +63,54 @@ class Login extends Component {
     }
   };
 
-  loginButtonHandler = () => {
+ /* loginButtonHandler = () => {
     this.setState({ loginIsClicked: true });
-  };
+  };*/
 
   loginClickHandler = () => {
-    if (this.state.username && this.state.password) {
-      if (
-        this.state.username === "correct" &&
-        this.state.password === "correct"
-      ) {
-        this.setRedirect();
-      } else {
-        this.authFailed = "dispBlock";
-      }
-    } else {
-      this.setState({
-        usernameRequired: "dispBlock",
-        passwordRequired: "dispBlock"
-      });
+    let username= this.state.username;
+    let password= this.state.password;
+    if(this.state.inputUsername!=="" && this.state.inputPassword!==""){
+      //checking with the saved password
+      if (this.state.inputUsername===username && this.state.inputPassword===password) {
+        alert("authenticated");
+        //this.setRedirect();
+      }else{
+      this.setState({authFailed : "dispBlock"})
+      }  
     }
-  };
+    this.state.inputUsername===""? this.setState({usernameRequired:"dispBlock"}):this.setState({usernameRequired:"dispNone"})
+    this.state.inputPassword===""? this.setState({passwordRequired: "dispBlock"}):  this.setState({passwordRequired: "dispNone"}) 
+    
+    }
+  
 
   inputUsernameChangeHandler = e => {
-    this.setState({ username: e.target.value });
+    this.setState({ inputUsername: e.target.value });
   };
   inputPasswordChangeHandler = e => {
-    this.setState({ password: e.target.value });
+    this.setState({ inputPassword: e.target.value });
   };
   render() {
     return (
       <div>
-        <Header extendedHeader={false} searchBar={false} profile={false} />
+        {/*<Header extendedHeader={false} searchBar={false} profile={false} />*/}
         <div />
         {this.renderRedirect()}
         <div className="top-container">
           <CardContainer className="login-card-container">
             <Card className="login-card">
               <CardContent className="card-content">
-                <Typography variant="h5" component="h2">
+                <Typography variant="headline" component="h2" style={{marginBottom:"10px"}}>
                   LOGIN
                 </Typography>
 
-                <FormControl required>
+                <FormControl className='login-input-field' required >
                   <InputLabel htmlFor="username">Username</InputLabel>
                   <Input
                     id="username"
                     type="text"
-                    username={this.state.username}
+                    username={this.state.inputUsername}
                     onChange={this.inputUsernameChangeHandler}
                   />
                   <FormHelperText className={this.state.usernameRequired}>
@@ -114,12 +119,12 @@ class Login extends Component {
                 </FormControl>
                 <br />
                 <br />
-                <FormControl required>
+                <FormControl className='login-input-field' required>
                   <InputLabel htmlFor="password">Password</InputLabel>
                   <Input
                     id="password"
                     type="password"
-                    password={this.state.password}
+                    password={this.state.inputPassword}
                     onChange={this.inputPasswordChangeHandler}
                   />
                   <FormHelperText className={this.state.passwordRequired}>
@@ -134,9 +139,7 @@ class Login extends Component {
                 <br />
                 <br />
 
-                <Button
-                  variant="contained"
-                  color="primary"
+                <Button variant="contained" style={{backgroundColor: '#5B00BB',color:"#FFFFFF",marginTop:'10px'}}
                   onClick={this.loginClickHandler}
                 >
                   LOGIN

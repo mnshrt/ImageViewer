@@ -12,7 +12,8 @@
 
 .login-card {
   width: 80%;
-  text-align: center;
+  padding:50px;
+  text-align: left;
 }
 
 .top-container {
@@ -21,3 +22,8 @@
   margin-left: 50vh;
   margin-top: 10px;
 }
+
+.login-input-field{
+  width:80%;
+}
+
