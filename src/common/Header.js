@@ -25,7 +25,8 @@ class Header extends Component {
     extendedHeader: false,
     searchBar: false,
     profile: false,
-    redirect: false
+    profileImage: undefined,
+    redirectHome: false
   };
 
   handleMenu = event => {
@@ -36,15 +37,33 @@ class Header extends Component {
     this.setState({ anchorEl: null });
   };
 
-  setRedirect = () => {
+  setRedirectHome = () => {
     this.setState({
-      redirect: true
+      redirectHome: true
     });
   };
 
-  renderRedirect = () => {
-    if (this.state.redirect) {
+  setRedirectProfile = img => {
+    this.setState({
+      redirectProfile: true,
+      profileImage: img
+    });
+  };
+
+  renderRedirect = img => {
+    if (this.state.redirectHome) {
+      window.sessionStorage.removeItem("access-token");
       return <Redirect to="/" />;
+    }
+    if (this.state.redirectProfile) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/profile",
+            state: { image: this.state.profileImage }
+          }}
+        />
+      );
     }
   };
 
@@ -95,12 +114,21 @@ class Header extends Component {
                   onClick={this.handleMenu}
                   color="inherit"
                 >
-                  <Avatar
-                    style={{ flex: 1 }}
-                    className="user-profile-avatar"
-                    alt="Remy Sharp"
-                    src={image}
-                  />
+                  {this.state.profile ? (
+                    <Avatar
+                      style={{ flex: 1 }}
+                      className="user-profile-avatar-profilePage"
+                      alt="Remy Sharp"
+                      src={image}
+                    />
+                  ) : (
+                    <Avatar
+                      style={{ flex: 1 }}
+                      className="user-profile-avatar"
+                      alt="User"
+                      src={image}
+                    />
+                  )}
                 </IconButton>
                 <div>
                   <Menu
@@ -119,14 +147,16 @@ class Header extends Component {
                         <MenuList id="menu-list">
                           <MenuItem
                             className="menu-item"
-                            onClick={this.handleClose}
+                            onClick={() => {
+                              this.setRedirectProfile(image);
+                            }}
                           >
                             My Account
                           </MenuItem>
                           <hr />
                           <MenuItem
                             className="menu-item"
-                            onClick={this.setRedirect}
+                            onClick={this.setRedirectHome}
                           >
                             Logout
                           </MenuItem>
@@ -137,7 +167,7 @@ class Header extends Component {
                         <MenuList id="menu-list">
                           <MenuItem
                             className="menu-item"
-                            onClick={this.setRedirect}
+                            onClick={this.setRedirectHome}
                           >
                             Logout
                           </MenuItem>

@@ -26,3 +26,7 @@
   margin: 0 !important;
 }
 
+.user-profile-avatar-profilePage {
+  position: "relative";
+  margin-left: 990px;
+}
