@@ -1,11 +1,12 @@
 // Imports
 import React, { Component, useDebugValue } from "react";
+import { Redirect } from "react-router-dom";
 import Post from "../../common/Post";
 import Header from "../../common/Header";
 import "./Home.css";
 
 // Instagram API access token
-const ACCESS_TOKEN = "8661035776.d0fcd39.87fd934e04f84253aaf234d8bd4e4c65";
+const ACCESS_TOKEN = window.sessionStorage.getItem("access-token");
 
 /**
  *
@@ -24,14 +25,14 @@ class Home extends Component {
   // Initialize state
   state = {
     firstImage: {
-      username: undefined,
+      username: "",
       avatar: undefined,
       caption: undefined,
       image: undefined,
       likes: undefined
     },
     secondImage: {
-      username: undefined,
+      username: "",
       avatar: undefined,
       caption: undefined,
       image: undefined,
@@ -122,19 +123,6 @@ class Home extends Component {
     // Loop through both out caption arrays and compare values
     for (let i = 0; i < captionListOne.length; i++) {
       for (let j = 0; j < captionListTwo.length; j++) {
-        /**
-         * Conditional statements:
-         * 1. If the search input is contained in both the captionList
-         * variables, setState of forDisplay to true
-         *
-         * 2. Else if only captionListTwo contains the search input setState
-         * of forDisplay for the second image to true, and setState of forDisplay
-         * for the first image to false
-         *
-         * 3. ELse if only captionListOne contains the search input, setState
-         * of forDisplay for the first image to true, and setState of forDisplay
-         * for the second image to false
-         */
         if (
           captionListOne[i].toLowerCase().includes(searchInput.split(" ")) &&
           captionListTwo[j].toLowerCase().includes(searchInput.split(" "))
@@ -146,6 +134,20 @@ class Home extends Component {
               },
               secondImage: {
                 forDisplay: true
+              }
+            }
+          });
+        } else if (
+          !captionListTwo[j].toLowerCase().includes(searchInput.split(" ")) &&
+          !captionListOne[i].toLowerCase().includes(searchInput.split(" "))
+        ) {
+          this.setState({
+            display: {
+              firstImage: {
+                forDisplay: false
+              },
+              secondImage: {
+                forDisplay: false
               }
             }
           });
@@ -181,8 +183,7 @@ class Home extends Component {
       }
     }
   }
-
-  // Call the getData() function on componentDidMount() to retrieve the API data
+  // get data
   componentDidMount() {
     this.getData();
   }
