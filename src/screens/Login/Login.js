@@ -78,8 +78,11 @@ class Login extends Component {
       //checking with the saved password
       if (this.state.inputUsername===username && this.state.inputPassword===password) {
         this.setState({usernameRequired:"dispNone",passwordRequired: "dispNone", authFailed : "dispNone"})
+        //setting access token variable in session Storage
+        sessionStorage.setItem("access-token","8661035776.d0fcd39.87fd934e04f84253aaf234d8bd4e4c65");
+
+        //add the routing for the home page here
         alert("authenticated");
-        //this.setRedirect();
       }else{
       this.setState({authFailed : "dispBlock"})
       }  
