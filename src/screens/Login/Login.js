@@ -10,6 +10,7 @@ import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import { Redirect } from "react-router-dom";
+import Header from "../../common/Header";
 import "./Login.css";
 
 // Card container
@@ -110,7 +111,7 @@ class Login extends Component {
   render() {
     return (
       <div>
-        {/*<Header extendedHeader={false} searchBar={false} profile={false} />*/}
+        <Header extendedHeader={false} searchBar={false} profile={false} />
         <div />
         {this.renderRedirect()}
         <div className="top-container">
