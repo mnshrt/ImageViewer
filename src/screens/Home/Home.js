@@ -1,7 +1,7 @@
 // Imports
 import React, { Component, useDebugValue } from "react";
-import Post from "../common/Post";
-import Header from "../common/Header";
+import Post from "../../common/Post";
+import Header from "../../common/Header";
 import "./Home.css";
 
 // Instagram API access token
@@ -226,3 +226,4 @@ class Home extends Component {
 
 // Export
 export default Home;
+
