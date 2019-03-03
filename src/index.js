@@ -1,9 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import Login from './screens/Login/Login';
+// Imports
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import "./index.css";
 
-ReactDOM.render(
-    <Login/>, 
-    document.getElementById('root')
-);
+// Main render
+ReactDOM.render(<App />, document.getElementById("root"));
